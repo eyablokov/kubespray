@@ -32,7 +32,7 @@ See below for a complete successful run:
 cd contrib/dind
 pip install -r requirements.txt
 
-ansible-playbook -i hosts dind-cluster.yaml
+ansible-playbook -i hosts dind-cluster.yml
 
 # Back to kubespray root
 cd ../..
@@ -73,7 +73,7 @@ replacing `DISTRO` by either `debian`, `ubuntu`, `centos`, `fedora`:
 
 ~~~
 cd contrib/dind
-ansible-playbook -i hosts dind-cluster.yaml --extra-vars node_distro=DISTRO
+ansible-playbook -i hosts dind-cluster.yml --extra-vars node_distro=DISTRO
 
 cd ../..
 CONFIG_FILE=inventory/local-dind/hosts.ini /tmp/kubespray.dind.inventory_builder.sh

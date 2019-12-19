@@ -18,7 +18,7 @@ test_distro() {
     local distro=${1:?};shift
     local extra="${*:-}"
     local prefix="$distro[${extra}]}"
-    ansible-playbook -i hosts dind-cluster.yaml -e node_distro=$distro
+    ansible-playbook -i hosts dind-cluster.yml -e node_distro=$distro
     pass_or_fail "$prefix: dind-nodes" || return 1
     (cd ../..
         INVENTORY_DIR=inventory/local-dind

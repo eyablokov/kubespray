@@ -29,7 +29,7 @@ test_distro() {
         extra_args=""; for extra_arg in $extra; do extra_args="$extra_args -e $extra_arg"; done
         ansible-playbook --become -e ansible_ssh_user=$distro -i \
             ${INVENTORY_DIR}/hosts.ini cluster.yml \
-            -e @contrib/dind/kubespray-dind.yaml -e bootstrap_os=$distro ${extra_args}
+            -e @contrib/dind/kubespray-dind.yml -e bootstrap_os=$distro ${extra_args}
         pass_or_fail "$prefix: kubespray"
     ) || return 1
     local node0=${NODES[0]}

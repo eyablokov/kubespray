@@ -46,14 +46,14 @@ see `./hosts` file for an example expanded localhost entry.
 failed: [localhost] (item=kube-node1) => {"changed": false, "item": "kube-node1", "msg": "Failed to import docker or docker-py - No module named requests.exceptions. Try `pip install docker` or `pip install docker-py` (Python 2.6)"}
 ~~~
 
-2. Customize kubespray-dind.yaml
+2. Customize kubespray-dind.yml
 
 Note that there's coupling between above created node containers
-and `kubespray-dind.yaml` settings, in particular regarding selected `node_distro`
+and `kubespray-dind.yml` settings, in particular regarding selected `node_distro`
 (as set in `group_vars/all/all.yaml`), and docker settings.
 
 ~~~
-$EDITOR contrib/dind/kubespray-dind.yaml
+$EDITOR contrib/dind/kubespray-dind.yml
 ~~~
 
 3. Prepare the inventory and run the playbook
@@ -64,7 +64,7 @@ mkdir -p ${INVENTORY_DIR}
 rm -f ${INVENTORY_DIR}/hosts.ini
 CONFIG_FILE=${INVENTORY_DIR}/hosts.ini /tmp/kubespray.dind.inventory_builder.sh
 
-ansible-playbook --become -e ansible_ssh_user=debian -i ${INVENTORY_DIR}/hosts.ini cluster.yml --extra-vars @contrib/dind/kubespray-dind.yaml
+ansible-playbook --become -e ansible_ssh_user=debian -i ${INVENTORY_DIR}/hosts.ini cluster.yml --extra-vars @contrib/dind/kubespray-dind.yml
 ~~~
 
 NOTE: You could also test other distros without editing files by
@@ -77,7 +77,7 @@ ansible-playbook -i hosts dind-cluster.yaml --extra-vars node_distro=DISTRO
 
 cd ../..
 CONFIG_FILE=inventory/local-dind/hosts.ini /tmp/kubespray.dind.inventory_builder.sh
-ansible-playbook --become -e ansible_ssh_user=DISTRO -i inventory/local-dind/hosts.ini cluster.yml --extra-vars @contrib/dind/kubespray-dind.yaml --extra-vars bootstrap_os=DISTRO
+ansible-playbook --become -e ansible_ssh_user=DISTRO -i inventory/local-dind/hosts.ini cluster.yml --extra-vars @contrib/dind/kubespray-dind.yml --extra-vars bootstrap_os=DISTRO
 ~~~
 
 ## Resulting deployment
